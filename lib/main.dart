@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,25 +35,23 @@ class HomePage extends StatelessWidget {
         title: Text("This is appBar", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.green,
       ),
-      body: SingleChildScrollView(
+      body: ListView.builder(
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            for (int i = 1; i <= 10; i++)
-              Container(
-                width: 500,
-                height: 100,
-                color: const Color.fromARGB(255, 252, 190, 2),
-                margin: EdgeInsets.all(10),
-                child: Center(
-                  child: Text(
-                    "$i",
-                    style: TextStyle(fontSize: 25, color: Colors.white),
-                  ),
-                ),
+        itemCount: 20,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            width: 500,
+            height: 100,
+            margin: EdgeInsets.all(10),
+            color: Colors.green,
+            child: Center(
+              child: Text(
+                '${index + 1}',
+                style: TextStyle(fontSize: 25, color: Colors.white),
               ),
-          ],
-        ),
+            ),
+          );
+        },
       ),
     );
   }
