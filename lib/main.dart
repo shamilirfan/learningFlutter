@@ -35,23 +35,25 @@ class HomePage extends StatelessWidget {
         title: Text("This is appBar", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.green,
       ),
-      body: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: 20,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            width: 500,
-            height: 100,
-            margin: EdgeInsets.all(10),
-            color: Colors.green,
-            child: Center(
-              child: Text(
-                '${index + 1}',
-                style: TextStyle(fontSize: 25, color: Colors.white),
+      body: GridView(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+        ),
+        children: [
+          for (int i = 0; i < 20; i++)
+            Container(
+              width: 100,
+              height: 100,
+              margin: EdgeInsets.all(5),
+              color: Colors.purple,
+              child: Center(
+                child: Text(
+                  'Hi',
+                  style: TextStyle(fontSize: 25, color: Colors.white),
+                ),
               ),
             ),
-          );
-        },
+        ],
       ),
     );
   }
