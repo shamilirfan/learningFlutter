@@ -30,104 +30,51 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("This is title"),
-        backgroundColor: Colors.lightBlueAccent,
-        elevation: 5,
-        actions: [
-          IconButton(
-            onPressed: () => mySnackbar(Text("settings"), context),
-            icon: Icon(Icons.settings),
+        title: Text("This is appBar", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.green,
+      ),
+      body:
+          // Container(
+          //   width: 250,
+          //   height: 250,
+          //   // height: 170,
+          //   alignment: Alignment.topCenter,
+          //   margin: EdgeInsets.all(50),
+          //   padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          //   decoration: BoxDecoration(
+          //     color: Colors.teal,
+          //     border: Border.all(width: 5, color: Colors.amberAccent),
+          //   ),
+          //   child: Image.network(
+          //     'https://tse4.mm.bing.net/th/id/OIP.y6PMbjNmo-X75RBTMrarHQHaE7?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
+          //   ),
+          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                child: Image.network(
+                  'https://tse4.mm.bing.net/th/id/OIP.-sm4kru2JTCp1GgdSNagsgHaEK?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
+                ),
+              ),
+              Container(
+                width: 100,
+                height: 100,
+                child: Image.network(
+                  'https://tse4.mm.bing.net/th/id/OIP.hjK5zzIi77QYygIY7ZT3VQAAAA?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
+                ),
+              ),
+              Container(
+                width: 100,
+                height: 100,
+                child: Image.network(
+                  'https://tse4.mm.bing.net/th/id/OIP.2eB7y0ihrtZYzizARUuDkwHaE8?r=0&cb=thfc1&w=1269&h=846&rs=1&pid=ImgDetMain&o=7&rm=3',
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      //body: Text("Hello Body!"),
-      backgroundColor: Colors.amberAccent,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.purple,
-        onPressed: () {
-          mySnackbar(Text("I'm Floating Action Button"), context);
-        },
-        elevation: 5,
-        child: Icon(Icons.add),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: "Message"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ],
-        onTap: (int index) {
-          if (index == 0) mySnackbar(Text("Home"), context);
-          if (index == 1) mySnackbar(Text("Message"), context);
-          if (index == 2) mySnackbar(Text("Profile"), context);
-        },
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              padding: EdgeInsets.all(0),
-              child: UserAccountsDrawerHeader(
-                currentAccountPicture: Image.network(
-                  'https://tse3.mm.bing.net/th/id/OIP.-edFDcSqlon5xMykpg5qMgHaEK?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
-                ),
-                currentAccountPictureSize: Size(130, 80),
-                decoration: BoxDecoration(color: Colors.grey),
-                accountName: Text(
-                  "Shamil Irfan",
-                  style: TextStyle(color: Colors.white),
-                ),
-                accountEmail: Text(
-                  "shamilirfan28@gmail.com",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-            ListTile(leading: Icon(Icons.home), title: Text("Home")),
-            ListTile(leading: Icon(Icons.person), title: Text("Profile")),
-            ListTile(leading: Icon(Icons.photo), title: Text("Photo")),
-            ListTile(leading: Icon(Icons.album), title: Text("Album")),
-            ListTile(
-              leading: Icon(Icons.contact_emergency),
-              title: Text("Contact"),
-            ),
-            ListTile(leading: Icon(Icons.phone), title: Text("Phone")),
-            ListTile(leading: Icon(Icons.email), title: Text("Email")),
-          ],
-        ),
-      ),
-      // endDrawer
-      endDrawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              padding: EdgeInsets.all(0),
-              child: UserAccountsDrawerHeader(
-                currentAccountPicture: Image.network(
-                  'https://tse3.mm.bing.net/th/id/OIP.-edFDcSqlon5xMykpg5qMgHaEK?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
-                ),
-                currentAccountPictureSize: Size(130, 80),
-                decoration: BoxDecoration(color: Colors.grey),
-                accountName: Text(
-                  "Shamil Irfan",
-                  style: TextStyle(color: Colors.white),
-                ),
-                accountEmail: Text(
-                  "shamilirfan28@gmail.com",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-            ListTile(leading: Icon(Icons.home), title: Text("Home")),
-            ListTile(
-              leading: Icon(Icons.contact_emergency),
-              title: Text("Contact"),
-            ),
-            ListTile(leading: Icon(Icons.phone), title: Text("Phone")),
-            ListTile(leading: Icon(Icons.email), title: Text("Email")),
-          ],
-        ),
-      ),
     );
   }
 }
