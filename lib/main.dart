@@ -68,35 +68,63 @@ class HomePage extends StatelessWidget {
             DrawerHeader(
               padding: EdgeInsets.all(0),
               child: UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: Colors.white),
+                currentAccountPicture: Image.network(
+                  'https://tse3.mm.bing.net/th/id/OIP.-edFDcSqlon5xMykpg5qMgHaEK?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
+                ),
+                currentAccountPictureSize: Size(130, 80),
+                decoration: BoxDecoration(color: Colors.grey),
                 accountName: Text(
                   "Shamil Irfan",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
                 accountEmail: Text(
                   "shamilirfan28@gmail.com",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
-                currentAccountPicture: Image.network(
-                  "https://tse3.mm.bing.net/th/id/OIP.-edFDcSqlon5xMykpg5qMgHaEK?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3",
-                ),
-                currentAccountPictureSize: Size(130, 80),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home"),
-              onTap: () => mySnackbar(Text("Home List Tile"), context),
-            ),
+            ListTile(leading: Icon(Icons.home), title: Text("Home")),
+            ListTile(leading: Icon(Icons.person), title: Text("Profile")),
+            ListTile(leading: Icon(Icons.photo), title: Text("Photo")),
+            ListTile(leading: Icon(Icons.album), title: Text("Album")),
             ListTile(
               leading: Icon(Icons.contact_emergency),
               title: Text("Contact"),
             ),
-            ListTile(leading: Icon(Icons.album), title: Text("Album")),
-            ListTile(leading: Icon(Icons.person), title: Text("Profile")),
             ListTile(leading: Icon(Icons.phone), title: Text("Phone")),
             ListTile(leading: Icon(Icons.email), title: Text("Email")),
-            ListTile(leading: Icon(Icons.photo), title: Text("Photo")),
+          ],
+        ),
+      ),
+      // endDrawer
+      endDrawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              padding: EdgeInsets.all(0),
+              child: UserAccountsDrawerHeader(
+                currentAccountPicture: Image.network(
+                  'https://tse3.mm.bing.net/th/id/OIP.-edFDcSqlon5xMykpg5qMgHaEK?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
+                ),
+                currentAccountPictureSize: Size(130, 80),
+                decoration: BoxDecoration(color: Colors.grey),
+                accountName: Text(
+                  "Shamil Irfan",
+                  style: TextStyle(color: Colors.white),
+                ),
+                accountEmail: Text(
+                  "shamilirfan28@gmail.com",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            ListTile(leading: Icon(Icons.home), title: Text("Home")),
+            ListTile(
+              leading: Icon(Icons.contact_emergency),
+              title: Text("Contact"),
+            ),
+            ListTile(leading: Icon(Icons.phone), title: Text("Phone")),
+            ListTile(leading: Icon(Icons.email), title: Text("Email")),
           ],
         ),
       ),
