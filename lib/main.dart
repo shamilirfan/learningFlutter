@@ -18,42 +18,54 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
-  mySnackbar(message, context) {
+  // snackBar
+  mySnackbar(message, BuildContext context) {
     return ScaffoldMessenger.of(
       context,
-    ).showSnackBar(SnackBar(content: message));
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
+
+  // button style
+  ButtonStyle buttonStyle = ElevatedButton.styleFrom(
+    backgroundColor: const Color.fromARGB(255, 245, 242, 242),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    foregroundColor: Colors.grey,
+    shadowColor: Colors.red,
+    elevation: 5,
+  );
 
   @override
   Widget build(BuildContext context) {
-    var images = <String>[
-      'https://c4.wallpaperflare.com/wallpaper/327/865/306/boat-tropical-beach-island-cove-hd-wallpaper-preview.jpg',
-      'https://tse4.mm.bing.net/th/id/OIP.liYTHdMyJZHuCIs7PyQU2AHaD5?r=0&cb=thfc1&w=1900&h=1000&rs=1&pid=ImgDetMain&o=7&rm=3',
-      'https://tse3.mm.bing.net/th/id/OIP.dvKl7mBOSq01p_H5LpPOBgHaEK?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
-      'https://tse2.mm.bing.net/th/id/OIP.s4SAePe1s_gS9SuCj6HJ9wHaEC?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3',
-      'https://tse1.mm.bing.net/th/id/OIP.bDX9zbqNPSe1w8AHDycYFwHaEK?r=0&cb=thfc1&w=1024&h=575&rs=1&pid=ImgDetMain&o=7&rm=3',
-    ];
     return Scaffold(
       appBar: AppBar(
         title: Text("This is appBar", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.green,
       ),
-      body: GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
+      body: Column(
         children: [
-          for (int i = 0; i < 5; i++)
-            Container(
-              margin: EdgeInsets.all(3),
-              color: Colors.purple,
-              child: Image.network('${images[i]}'),
-            ),
+          Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextButton(
+                onPressed: () => mySnackbar("Text Button", context),
+                child: Text("Text Button"),
+              ),
+              ElevatedButton(
+                onPressed: () => mySnackbar("Elevated Button", context),
+                child: Text("Elevated Button"),
+                style: buttonStyle,
+              ),
+              OutlinedButton(
+                onPressed: () => mySnackbar("Outline Button", context),
+                child: Text("Outline Button"),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 }
-
