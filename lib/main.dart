@@ -20,21 +20,10 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  // snackBar
-  mySnackbar(message, BuildContext context) {
-    return ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
-  }
+  // arr
+  var colors = [Colors.red.shade100, Colors.red.shade200, Colors.red.shade300];
 
-  // button style
-  ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-    backgroundColor: const Color.fromARGB(255, 245, 242, 242),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    foregroundColor: Colors.grey,
-    shadowColor: Colors.red,
-    elevation: 5,
-  );
+  // snackBar
 
   @override
   Widget build(BuildContext context) {
@@ -42,29 +31,24 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("This is appBar", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.green,
+        elevation: 0,
       ),
-      body: Column(
-        children: [
-          Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TextButton(
-                onPressed: () => mySnackbar("Text Button", context),
-                child: Text("Text Button"),
-              ),
-              ElevatedButton(
-                onPressed: () => mySnackbar("Elevated Button", context),
-                child: Text("Elevated Button"),
-                style: buttonStyle,
-              ),
-              OutlinedButton(
-                onPressed: () => mySnackbar("Outline Button", context),
-                child: Text("Outline Button"),
-              ),
-            ],
-          ),
-        ],
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 0,
+          mainAxisSpacing: 3,
+          childAspectRatio: 10 / 5,
+        ),
+        itemCount: 21,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            margin: EdgeInsets.all(1),
+            child: Image.network(
+              'https://media.traveldepartment.co.uk/dmxa8n1ci/image/upload/g_auto,f_auto,q_auto:best,c_lfill,w_1000/v1702399585/unesco_sites_in_japan_ed1a895ec1',
+            ),
+          );
+        },
       ),
     );
   }
