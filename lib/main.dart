@@ -22,13 +22,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    var orientation = MediaQuery.of(context).orientation;
+
     return Scaffold(
-      appBar: AppBar(title: Text("Title")),
+      appBar: AppBar(title: Text("Home")),
       body: Center(
-        child: LinearProgressIndicator(
-          color: Colors.red,
-          backgroundColor: Colors.purple,
-          // minHeight: 10,
+        child: Column(
+          children: [
+            Text("Screen Width = $width"),
+            Text("Screen Height = $height"),
+            Text("Screen Orientation = $orientation"),
+          ],
         ),
       ),
     );
