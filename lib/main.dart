@@ -20,53 +20,85 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  State<StatefulWidget> createState() {
-    return HomePageUI();
-  }
+  @override
+  State<StatefulWidget> createState() => HomePageUI();
 }
 
 class HomePageUI extends State<HomePage> {
+  // Input Decoration
+  InputDecoration inputDecoration(label) {
+    return InputDecoration(
+      border: const OutlineInputBorder(),
+      labelText: label,
+    );
+  }
+
+  // Map for form values
+  Map<String, double> formValue = {"Number1": 0, "Number2": 0};
+  double sum = 0;
+
+  // method to set input value in map safely
+  inputOnChange(inputKey, inputValue) {
+    setState(() {
+      formValue.update(inputKey, (value) => double.parse(inputValue));
+    });
+  }
+
+  // Sum all numbers
+  sumAllNumber() {
+    setState(() {
+      for (var item in formValue.values) {
+        sum += item;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Counter App"),
+        title: const Text("Sum App"),
         backgroundColor: Colors.blueGrey,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'First Number',
-              ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
+        child: Column(
+          children: [
+            Text("Sum = $sum", style: const TextStyle(fontSize: 20)),
+            const SizedBox(height: 20),
+
+            // First Number Input
+            TextField(
+              keyboardType: TextInputType.number,
+              onChanged: (value) => inputOnChange("Number1", value),
+              decoration: inputDecoration('First Number'),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Second Number',
-              ),
+            const SizedBox(height: 20),
+
+            // Second Number Input
+            TextField(
+              keyboardType: TextInputType.number,
+              onChanged: (value) => inputOnChange("Number2", value),
+              decoration: inputDecoration('Second Number'),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
-            child: ElevatedButton(
-              onPressed: () {},
+            const SizedBox(height: 20),
+
+            // Button
+            ElevatedButton(
+              onPressed: () => sumAllNumber(),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.purple,
                 shadowColor: Colors.pinkAccent,
                 elevation: 5,
-                minimumSize: Size(double.infinity, 60),
+                minimumSize: const Size(double.infinity, 60),
               ),
-              child: Text("Add", style: TextStyle(fontWeight: FontWeight.bold)),
+              child: const Text(
+                "Add",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
