@@ -20,27 +20,53 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  @override
   State<StatefulWidget> createState() {
     return HomePageUI();
   }
 }
 
 class HomePageUI extends State<HomePage> {
-  // count
-  int count = 0;
-  incrementCounter() => setState(() => count++);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Counter App"), backgroundColor: Colors.blue),
-      body: Center(child: Text("Counting Number : $count")),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => incrementCounter(),
-        backgroundColor: Colors.blue,
-        hoverColor: Colors.green,
-        child: Icon(Icons.add),
+      appBar: AppBar(
+        title: Text("Counter App"),
+        backgroundColor: Colors.blueGrey,
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'First Number',
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Second Number',
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.purple,
+                shadowColor: Colors.pinkAccent,
+                elevation: 5,
+                minimumSize: Size(double.infinity, 60),
+              ),
+              child: Text("Add", style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+          ),
+        ],
       ),
     );
   }
