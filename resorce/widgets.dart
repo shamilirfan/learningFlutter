@@ -1,3 +1,4 @@
+// build()
 // GestureDetector()
 // Center()
 // ListView.builder()
@@ -12,3 +13,9 @@
 
 // Adaptive :-
 // LayoutBuilder()
+
+// State method :-
+// CreateState()
+// initState()
+// didChangeState()
+// setState()
