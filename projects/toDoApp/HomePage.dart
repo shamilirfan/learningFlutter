@@ -1,5 +1,5 @@
-import 'package:app1/style.dart';
 import 'package:flutter/material.dart';
+import 'style.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,8 +12,8 @@ class HomePageUI extends State<HomePage> {
   List<String> toDo = ['Japan', 'South Korea', 'Taiwan', 'China'];
   String item = "";
 
-  // onPressed in add button
-  onPress() {
+  // onAdd in add button
+  onAdd() {
     setState(() {
       toDo.add(item);
     });
@@ -21,6 +21,13 @@ class HomePageUI extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // onDelete
+    onDelete(index) {
+      setState(() {
+        toDo.removeAt(index);
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text('To Do App'), backgroundColor: Colors.green),
       body: Padding(
@@ -42,7 +49,7 @@ class HomePageUI extends State<HomePage> {
                   Expanded(
                     flex: 24,
                     child: ElevatedButton(
-                      onPressed: () => onPress(),
+                      onPressed: () => onAdd(),
                       style: elevatedButton(),
                       child: Text("Add"),
                     ),
@@ -65,7 +72,9 @@ class HomePageUI extends State<HomePage> {
                             Expanded(
                               flex: 10,
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  onDelete(index);
+                                },
                                 child: Icon(Icons.delete),
                               ),
                             ),
