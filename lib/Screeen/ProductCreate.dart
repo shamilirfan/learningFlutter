@@ -1,3 +1,4 @@
+import 'package:app1/RestAPI/RestClient.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/style/style.dart';
 
@@ -26,13 +27,23 @@ class _ProductCreate extends State<Productcreate> {
   }
 
   // input validation
-  void formOnSubmit() {
+  void formOnSubmit() async {
     if (formValues['Img']!.length == 0) {
+      errorToast('Image is required');
     } else if (formValues['ProductCode']!.length == 0) {
+      errorToast('Product Code is required');
     } else if (formValues['ProductName']!.length == 0) {
+      errorToast('Product Name is required');
     } else if (formValues['Quantity']!.length == 0) {
+      errorToast('Quantity is required');
     } else if (formValues['TotalPrice']!.length == 0) {
-    } else if (formValues['UnitPrice']!.length == 0) {}
+      errorToast('Total Price is required');
+    } else if (formValues['UnitPrice']!.length == 0) {
+      errorToast('Unit Price is required');
+    } else {
+      // Data Rest API
+      await ProductCreateRequest(formValues);
+    }
   }
 
   @override
