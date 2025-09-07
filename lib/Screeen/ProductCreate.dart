@@ -2,13 +2,13 @@ import 'package:app1/RestAPI/RestClient.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/style/style.dart';
 
-class Productcreate extends StatefulWidget {
-  const Productcreate({super.key});
+class ProductCreate extends StatefulWidget {
+  const ProductCreate({super.key});
   @override
-  State<Productcreate> createState() => _ProductCreate();
+  State<ProductCreate> createState() => _ProductCreate();
 }
 
-class _ProductCreate extends State<Productcreate> {
+class _ProductCreate extends State<ProductCreate> {
   // Map
   Map<String, dynamic> formValues = {
     "Img": "",
@@ -18,6 +18,9 @@ class _ProductCreate extends State<Productcreate> {
     "TotalPrice": "",
     "UnitPrice": "",
   };
+
+  // Loading
+  bool Loading = false;
 
   // Input on Change Method
   void inputOnChange(String key, dynamic value) {
@@ -42,7 +45,9 @@ class _ProductCreate extends State<Productcreate> {
       errorToast('Unit Price is required');
     } else {
       // Data Rest API
+      setState(() => Loading = true);
       await ProductCreateRequest(formValues);
+      setState(() => Loading = false);
     }
   }
 
@@ -55,89 +60,91 @@ class _ProductCreate extends State<Productcreate> {
           // Background Graphics
           screenBackGround(context),
           Container(
-            child: (SingleChildScrollView(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  TextFormField(
-                    onChanged: (value) {
-                      inputOnChange('ProductName', value);
-                    },
-                    decoration: inputDecoration('Product Name'),
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    onChanged: (value) {
-                      inputOnChange('ProductCode', value);
-                    },
-                    decoration: inputDecoration('Product Code'),
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    onChanged: (value) {
-                      inputOnChange('Img', value);
-                    },
-                    decoration: inputDecoration('Product Image'),
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    onChanged: (value) {
-                      inputOnChange('UnitPrice', value);
-                    },
-                    decoration: inputDecoration('Unit Price'),
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    onChanged: (value) {
-                      inputOnChange('TotalPrice', value);
-                    },
-                    decoration: inputDecoration('Total Price'),
-                  ),
-                  SizedBox(height: 20),
-                  decoratedBox(
-                    DropdownButton(
-                      value: formValues['Quantity'].isEmpty
-                          ? null
-                          : formValues['Quantity'],
-                      hint: Text("Select Quantity"),
-                      items: const [
-                        DropdownMenuItem(
-                          value: '',
-                          child: Text('Select Quantity'),
+            child: Loading
+                ? (Center(child: CircularProgressIndicator()))
+                : ((SingleChildScrollView(
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          onChanged: (value) {
+                            inputOnChange('ProductName', value);
+                          },
+                          decoration: inputDecoration('Product Name'),
                         ),
-                        DropdownMenuItem(
-                          value: '1 Pice',
-                          child: Text('1 Pice'),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          onChanged: (value) {
+                            inputOnChange('ProductCode', value);
+                          },
+                          decoration: inputDecoration('Product Code'),
                         ),
-                        DropdownMenuItem(
-                          value: '2 Pice',
-                          child: Text('2 Pice'),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          onChanged: (value) {
+                            inputOnChange('Img', value);
+                          },
+                          decoration: inputDecoration('Product Image'),
                         ),
-                        DropdownMenuItem(
-                          value: '3 Pice',
-                          child: Text('3 Pice'),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          onChanged: (value) {
+                            inputOnChange('UnitPrice', value);
+                          },
+                          decoration: inputDecoration('Unit Price'),
                         ),
-                        DropdownMenuItem(
-                          value: '4 Pice',
-                          child: Text('4 Pice'),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          onChanged: (value) {
+                            inputOnChange('TotalPrice', value);
+                          },
+                          decoration: inputDecoration('Total Price'),
+                        ),
+                        SizedBox(height: 20),
+                        decoratedBox(
+                          DropdownButton(
+                            value: formValues['Quantity'].isEmpty
+                                ? null
+                                : formValues['Quantity'],
+                            hint: Text("Select Quantity"),
+                            items: const [
+                              DropdownMenuItem(
+                                value: '',
+                                child: Text('Select Quantity'),
+                              ),
+                              DropdownMenuItem(
+                                value: '1 Pice',
+                                child: Text('1 Pice'),
+                              ),
+                              DropdownMenuItem(
+                                value: '2 Pice',
+                                child: Text('2 Pice'),
+                              ),
+                              DropdownMenuItem(
+                                value: '3 Pice',
+                                child: Text('3 Pice'),
+                              ),
+                              DropdownMenuItem(
+                                value: '4 Pice',
+                                child: Text('4 Pice'),
+                              ),
+                            ],
+                            onChanged: (value) {
+                              inputOnChange('Quantity', value);
+                            },
+                            underline: Container(),
+                            isExpanded: true,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () => formOnSubmit(),
+                          style: buttonStyle(),
+                          child: successButtonChild('Submit'),
                         ),
                       ],
-                      onChanged: (value) {
-                        inputOnChange('Quantity', value);
-                      },
-                      underline: Container(),
-                      isExpanded: true,
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () => formOnSubmit(),
-                    style: buttonStyle(),
-                    child: successButtonChild('Submit'),
-                  ),
-                ],
-              ),
-            )),
+                  ))),
           ),
         ],
       ),

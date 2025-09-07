@@ -1,3 +1,4 @@
+import 'package:app1/Screeen/ProductGridView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -89,5 +90,13 @@ void successToast(msg) {
     backgroundColor: colorGreen,
     textColor: colorWhite,
     fontSize: 16.0,
+  );
+}
+
+SliverGridDelegateWithFixedCrossAxisCount ProductGridViewStyle() {
+  return SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    mainAxisSpacing: 2,
+    mainAxisExtent: 250,
   );
 }
