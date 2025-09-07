@@ -8,6 +8,33 @@ class Productcreate extends StatefulWidget {
 }
 
 class _ProductCreate extends State<Productcreate> {
+  // Map
+  Map<String, dynamic> formValues = {
+    "Img": "",
+    "ProductCode": "",
+    "ProductName": "",
+    "Quantity": "",
+    "TotalPrice": "",
+    "UnitPrice": "",
+  };
+
+  // Input on Change Method
+  void inputOnChange(String key, dynamic value) {
+    setState(() {
+      formValues[key] = value;
+    });
+  }
+
+  // input validation
+  void formOnSubmit() {
+    if (formValues['Img']!.length == 0) {
+    } else if (formValues['ProductCode']!.length == 0) {
+    } else if (formValues['ProductName']!.length == 0) {
+    } else if (formValues['Quantity']!.length == 0) {
+    } else if (formValues['TotalPrice']!.length == 0) {
+    } else if (formValues['UnitPrice']!.length == 0) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,34 +49,47 @@ class _ProductCreate extends State<Productcreate> {
               child: Column(
                 children: [
                   TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      inputOnChange('ProductName', value);
+                    },
                     decoration: inputDecoration('Product Name'),
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      inputOnChange('ProductCode', value);
+                    },
                     decoration: inputDecoration('Product Code'),
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      inputOnChange('Img', value);
+                    },
                     decoration: inputDecoration('Product Image'),
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      inputOnChange('UnitPrice', value);
+                    },
                     decoration: inputDecoration('Unit Price'),
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      inputOnChange('TotalPrice', value);
+                    },
                     decoration: inputDecoration('Total Price'),
                   ),
                   SizedBox(height: 20),
                   decoratedBox(
                     DropdownButton(
-                      value: "",
-                      items: [
+                      value: formValues['Quantity'].isEmpty
+                          ? null
+                          : formValues['Quantity'],
+                      hint: Text("Select Quantity"),
+                      items: const [
                         DropdownMenuItem(
                           value: '',
                           child: Text('Select Quantity'),
@@ -71,14 +111,16 @@ class _ProductCreate extends State<Productcreate> {
                           child: Text('4 Pice'),
                         ),
                       ],
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        inputOnChange('Quantity', value);
+                      },
                       underline: Container(),
                       isExpanded: true,
                     ),
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => formOnSubmit(),
                     style: buttonStyle(),
                     child: successButtonChild('Submit'),
                   ),
