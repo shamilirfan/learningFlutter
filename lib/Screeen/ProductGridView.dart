@@ -1,32 +1,35 @@
+import 'package:app1/RestAPI/RestClient.dart';
 import 'package:app1/style/style.dart';
 import 'package:flutter/material.dart';
-import 'package:app1/RestAPI/RestClient.dart';
 
-class ProductGridView extends StatefulWidget {
-  const ProductGridView({super.key});
+class Productgridview extends StatefulWidget {
   @override
-  State<ProductGridView> createState() => _ProductGridView();
+  const Productgridview({super.key});
+  @override
+  State<Productgridview> createState() => _Productgridview();
 }
 
-class _ProductGridView extends State<ProductGridView> {
+class _Productgridview extends State<Productgridview> {
   // Product List
   var productList = [];
-  bool Loading = false;
+  // Loading
+  bool loading = false;
 
-  // data calling method
-  void callData() async {
-    Loading = true;
-    var data = await ProductGridViewListRequest();
+  // API calling method
+  void callAPI() async {
+    loading = true;
+    var data = await productGetRequest();
+
     setState(() {
       productList = data;
-      Loading = false;
+      loading = false;
     });
   }
 
   // initState method
   @override
   void initState() {
-    callData();
+    callAPI();
     super.initState();
   }
 
@@ -36,27 +39,30 @@ class _ProductGridView extends State<ProductGridView> {
       appBar: AppBar(title: Text("Product List")),
       body: Stack(
         children: [
-          screenBackGround(context),
+          backGround(context),
           Container(
-            child: Loading
+            child: loading
                 ? (Center(child: CircularProgressIndicator()))
-                : (GridView.builder(
-                    gridDelegate: ProductGridViewStyle(),
-                    itemBuilder: (context, int index) {
-                      return Card(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: Image.network(
-                                productList[index]['Img'],
-                                fit: BoxFit.fill,
+                : (Padding(
+                    padding: EdgeInsets.all(5),
+                    child: GridView.builder(
+                      gridDelegate: productGridViewStyle(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                child: Image.network(
+                                  productList[index]['Img'],
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   )),
           ),
         ],

@@ -3,35 +3,39 @@ import 'package:app1/style/style.dart';
 import 'package:http/http.dart' as http;
 
 // Get Method
-Future<List> ProductGridViewListRequest() async {
-  var URL = Uri.parse("https://crud.teamrabbil.com/api/v1/ReadProduct");
-  var PostHeader = {'Content-Type': 'application/json'};
-  var response = await http.get(URL, headers: PostHeader);
+Future<List> productGetRequest() async {
+  var url = "https://crud.teamrabbil.com/api/v1/ReadProduct";
+  var uri = Uri.parse(url);
+  var postHeader = {'Content-Type': 'application/json'};
+  var response = await http.get(uri, headers: postHeader);
+  var resultCode = response.statusCode;
+  var resultBody = jsonDecode(response.body);
 
-  if (response.statusCode == 200 &&
-      jsonDecode(response.body)['status'] == "success") {
-    successToast("Request Success");
-    return jsonDecode(response.body)['data'];
+  if (resultCode == 200 && resultBody['status'] == 'success') {
+    successToast('Get Request Success');
+    return resultBody['data'];
   } else {
-    errorToast("Request fail! try again");
+    errorToast('Get Request Fail!');
     return [];
   }
 }
 
 // Post Method
-Future<bool> ProductCreateRequest(formValues) async {
-  var URL = Uri.parse("https://crud.teamrabbil.com/api/v1/CreateProduct");
-  var PostBody = jsonEncode(formValues);
-  var PostHeader = {'Content-Type': 'application/json'};
-  var response = await http.post(URL, headers: PostHeader, body: PostBody);
+Future<bool> productCreateRequest(dynamic formValues) async {
+  var url = "https://crud.teamrabbil.com/api/v1/CreateProduct";
+  var uri = Uri.parse(url);
+  var postBody = jsonEncode(formValues);
+  var postHeader = {'Content-Type': 'application/json'};
+  var response = await http.post(uri, headers: postHeader, body: postBody);
   var resultCode = response.statusCode;
   var resultBody = jsonDecode(response.body);
 
-  if (resultCode == 200 && resultBody['status'] == "success") {
-    successToast("Request Success");
+  // condition
+  if (resultCode == 200 && resultBody["status"] == "success") {
+    successToast('Post Request Success');
     return true;
   } else {
-    errorToast("Request fail! try again");
+    errorToast('Post Request Fail!');
     return false;
   }
 }

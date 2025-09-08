@@ -1,32 +1,17 @@
-import 'package:app1/Screeen/ProductGridView.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-const colorRed = Color.fromRGBO(231, 28, 36, 1);
-const colorGreen = Color.fromRGBO(33, 191, 115, 1);
-const colorWhite = Color.fromRGBO(255, 255, 255, 1);
-const colorDarkBlue = Color.fromRGBO(44, 62, 88, 1);
+// color
+const white = Colors.white;
+const green = Colors.green;
+const red = Colors.red;
+const black = Colors.black;
+const transparent = Colors.transparent;
 
-InputDecoration inputDecoration(dynamic labelTxt) {
-  return InputDecoration(
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: colorGreen, width: 1),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: colorWhite, width: 0),
-    ),
-    filled: true,
-    fillColor: colorWhite,
-    contentPadding: EdgeInsets.fromLTRB(20, 10, 10, 20),
-    labelText: labelTxt,
-    hoverColor: colorWhite,
-  );
-}
-
-SvgPicture screenBackGround(BuildContext context) {
-  return SvgPicture.asset(
-    'assets/images/image-2.svg',
+// Background
+Widget backGround(BuildContext context) {
+  return Image.asset(
+    'assets/images/image-1.webp',
     alignment: Alignment.center,
     width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height,
@@ -34,66 +19,86 @@ SvgPicture screenBackGround(BuildContext context) {
   );
 }
 
-DecoratedBox decoratedBox(child) {
-  return DecoratedBox(
-    decoration: BoxDecoration(
-      color: colorWhite,
-      border: Border.all(color: colorWhite, width: 1),
-      borderRadius: BorderRadius.circular(4),
+// InputDecoration
+InputDecoration inputDecoration(String labelTxt) {
+  return InputDecoration(
+    labelText: labelTxt,
+    // filled: true,
+    border: OutlineInputBorder(),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: green, width: 1.2),
     ),
-    child: Padding(padding: EdgeInsets.only(left: 30, right: 30), child: child),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: green, width: 2.0),
+    ),
   );
 }
 
+// Dropdown Field
+BoxDecoration boxDecoration() {
+  return BoxDecoration(
+    color: transparent,
+    border: Border.all(color: green, width: 1.2),
+    borderRadius: BorderRadius.circular(4),
+  );
+}
+
+// Dropdown Menu
+Padding dropdownMenu(DropdownButton child) =>
+    Padding(padding: EdgeInsets.only(left: 15, right: 24), child: child);
+
+// Button style
 ButtonStyle buttonStyle() {
   return ElevatedButton.styleFrom(
-    backgroundColor: Colors.transparent,
-    foregroundColor: colorWhite,
-    elevation: 4,
+    backgroundColor: transparent,
+    foregroundColor: white,
     padding: EdgeInsets.all(0),
+    elevation: 5,
   );
 }
 
-Ink successButtonChild(String buttonTxt) {
+Ink buttonChild(String btnTxt) {
   return Ink(
     decoration: BoxDecoration(
-      color: colorGreen,
+      color: green,
       borderRadius: BorderRadius.circular(4),
     ),
     child: Container(
       height: 45,
       alignment: Alignment.center,
-      child: Text(buttonTxt, style: TextStyle(fontWeight: FontWeight.bold)),
+      child: Text(btnTxt, style: TextStyle(fontWeight: FontWeight.bold)),
     ),
   );
 }
 
-// Toast
-void errorToast(msg) {
+// Error Toast
+void errorToast(String msg) {
   Fluttertoast.showToast(
     msg: msg,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-    backgroundColor: colorRed,
-    textColor: colorWhite,
+    timeInSecForIosWeb: 2,
+    backgroundColor: red,
+    textColor: white,
     fontSize: 16.0,
   );
 }
 
-void successToast(msg) {
+// Success Toast
+void successToast(String msg) {
   Fluttertoast.showToast(
     msg: msg,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-    backgroundColor: colorGreen,
-    textColor: colorWhite,
+    timeInSecForIosWeb: 2,
+    backgroundColor: green,
+    textColor: white,
     fontSize: 16.0,
   );
 }
 
-SliverGridDelegateWithFixedCrossAxisCount ProductGridViewStyle() {
+// Product Grid View
+SliverGridDelegateWithFixedCrossAxisCount productGridViewStyle() {
   return SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
     mainAxisSpacing: 2,
