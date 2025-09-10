@@ -6,11 +6,12 @@ import 'package:http/http.dart' as http;
 Future<List> productGetRequest() async {
   var url = "https://crud.teamrabbil.com/api/v1/ReadProduct";
   var uri = Uri.parse(url);
-  var postHeader = {'Content-Type': 'application/json'};
-  var response = await http.get(uri, headers: postHeader);
+  var getHeader = {'Content-Type': 'application/json'};
+  var response = await http.get(uri, headers: getHeader);
   var resultCode = response.statusCode;
   var resultBody = jsonDecode(response.body);
 
+  // condition
   if (resultCode == 200 && resultBody['status'] == 'success') {
     successToast('Get Request Success');
     return resultBody['data'];
@@ -36,6 +37,25 @@ Future<bool> productCreateRequest(dynamic formValues) async {
     return true;
   } else {
     errorToast('Post Request Fail!');
+    return false;
+  }
+}
+
+// Delete Method
+Future<bool> productDeleteRequest(dynamic id) async {
+  var url = "https://crud.teamrabbil.com/api/v1/DeleteProduct/" + id;
+  var uri = Uri.parse(url);
+  var deleteHeader = {"Content-Type": "application/json"};
+  var response = await http.get(uri, headers: deleteHeader);
+  var resultCode = response.statusCode;
+  var resultBody = jsonDecode(response.body);
+
+  // condition
+  if (resultCode == 200 && resultBody["status"] == "success") {
+    successToast('Delete Request Success');
+    return true;
+  } else {
+    errorToast('Delete Request Fail!');
     return false;
   }
 }

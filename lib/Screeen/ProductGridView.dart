@@ -16,7 +16,7 @@ class _Productgridview extends State<Productgridview> {
   bool loading = false;
 
   // API calling method
-  void callAPI() async {
+  Future<void> callAPI() async {
     loading = true;
     var data = await productGetRequest();
 
@@ -33,6 +33,35 @@ class _Productgridview extends State<Productgridview> {
     super.initState();
   }
 
+  // Delete Product
+  void deleteProduct(dynamic id) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Delete!", style: TextStyle(color: red)),
+          content: Text("Do you want to delete"),
+          actions: [
+            OutlinedButton(
+              onPressed: () async {
+                Navigator.pop(context);
+                setState(() => loading = true);
+                await productDeleteRequest(id);
+                await callAPI();
+                setState(() => loading = false);
+              },
+              child: Text("Yes"),
+            ),
+            OutlinedButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('No'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,27 +72,73 @@ class _Productgridview extends State<Productgridview> {
           Container(
             child: loading
                 ? (Center(child: CircularProgressIndicator()))
-                : (Padding(
-                    padding: EdgeInsets.all(5),
-                    child: GridView.builder(
-                      gridDelegate: productGridViewStyle(),
-                      itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                child: Image.network(
-                                  productList[index]['Img'],
-                                  fit: BoxFit.cover,
+                : RefreshIndicator(
+                    onRefresh: () async {
+                      await callAPI();
+                    },
+                    child: (Padding(
+                      padding: EdgeInsets.all(5),
+                      child: GridView.builder(
+                        gridDelegate: productGridViewStyle(),
+                        itemCount: 9,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Expanded(
+                                  child: Image.network(
+                                    productList[index]['Img'],
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  )),
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 8, 5),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(height: 7),
+                                      Text(
+                                        "Name: ${productList[index]['ProductName']}",
+                                      ),
+                                      SizedBox(height: 7),
+                                      Text(
+                                        "Price ${productList[index]['TotalPrice']}",
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          OutlinedButton(
+                                            onPressed: () {},
+                                            child: Icon(
+                                              Icons.update,
+                                              color: green,
+                                            ),
+                                          ),
+                                          SizedBox(width: 5),
+                                          OutlinedButton(
+                                            onPressed: () => deleteProduct(
+                                              productList[index]['_id'],
+                                            ),
+                                            child: Icon(
+                                              Icons.delete,
+                                              color: red,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    )),
+                  ),
           ),
         ],
       ),
