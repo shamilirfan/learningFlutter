@@ -43,7 +43,7 @@ Future<bool> productCreateRequest(dynamic formValues) async {
 
 // Delete Method
 Future<bool> productDeleteRequest(dynamic id) async {
-  var url = "https://crud.teamrabbil.com/api/v1/DeleteProduct/" + id;
+  var url = "https://crud.teamrabbil.com/api/v1/DeleteProduct/$id";
   var uri = Uri.parse(url);
   var deleteHeader = {"Content-Type": "application/json"};
   var response = await http.get(uri, headers: deleteHeader);
@@ -56,6 +56,25 @@ Future<bool> productDeleteRequest(dynamic id) async {
     return true;
   } else {
     errorToast('Delete Request Fail!');
+    return false;
+  }
+}
+
+// Update Method
+Future<bool> productUpdateRequest(dynamic id) async {
+  var url = "https://crud.teamrabbil.com/api/v1/UpdateProduct/$id";
+  var uri = Uri.parse(url);
+  var deleteHeader = {"Content-Type": "application/json"};
+  var response = await http.get(uri, headers: deleteHeader);
+  var resultCode = response.statusCode;
+  var resultBody = jsonDecode(response.body);
+
+  // condition
+  if (resultCode == 200 && resultBody["status"] == "success") {
+    successToast('Update Request Success');
+    return true;
+  } else {
+    errorToast('Update Request Fail!');
     return false;
   }
 }

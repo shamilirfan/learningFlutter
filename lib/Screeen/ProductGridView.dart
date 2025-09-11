@@ -1,6 +1,8 @@
 import 'package:app1/RestAPI/RestClient.dart';
+import 'package:app1/Screeen/ProductCreate.dart';
 import 'package:app1/style/style.dart';
 import 'package:flutter/material.dart';
+import 'ProductUpdate.dart';
 
 class Productgridview extends StatefulWidget {
   @override
@@ -45,10 +47,10 @@ class _Productgridview extends State<Productgridview> {
             OutlinedButton(
               onPressed: () async {
                 Navigator.pop(context);
-                setState(() => loading = true);
+                // setState(() => loading = true);
                 await productDeleteRequest(id);
                 await callAPI();
-                setState(() => loading = false);
+                // setState(() => loading = false);
               },
               child: Text("Yes"),
             ),
@@ -88,7 +90,8 @@ class _Productgridview extends State<Productgridview> {
                               children: [
                                 Expanded(
                                   child: Image.network(
-                                    productList[index]['Img'],
+                                    // productList[index]['Img'],
+                                    "https://t4.ftcdn.net/jpg/08/99/07/21/360_F_899072107_ywRRbo3uBYahT5EuJ8ibzqy4LwePT9rn.jpg",
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -111,7 +114,15 @@ class _Productgridview extends State<Productgridview> {
                                             MainAxisAlignment.end,
                                         children: [
                                           OutlinedButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      ProductUpdate(productList[index]),
+                                                ),
+                                              );
+                                            },
                                             child: Icon(
                                               Icons.update,
                                               color: green,
@@ -141,6 +152,15 @@ class _Productgridview extends State<Productgridview> {
                   ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (builder) => ProductCreate()),
+          );
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
