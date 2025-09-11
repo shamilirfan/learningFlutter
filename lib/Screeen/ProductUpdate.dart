@@ -119,7 +119,7 @@ class _Productupdate extends State<ProductUpdate> {
                         DecoratedBox(
                           decoration: boxDecoration(),
                           child: dropdownMenu(
-                            DropdownButton<String>(
+                            DropdownButton(
                               value: formValues['Quantity'],
                               hint: Text("Select Quantity"),
                               items: const [
@@ -140,11 +140,8 @@ class _Productupdate extends State<ProductUpdate> {
                                   child: Text('4 Piece'),
                                 ),
                               ],
-                              onChanged: (String? value) {
-                                if (value != null) {
-                                  inputOnChange('Quantity', value);
-                                }
-                              },
+                              onChanged: (value) =>
+                                  inputOnChange('Quantity', value),
                               underline: Container(),
                               isExpanded: true,
                             ),
