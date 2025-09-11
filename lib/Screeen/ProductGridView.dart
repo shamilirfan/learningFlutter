@@ -119,7 +119,9 @@ class _Productgridview extends State<Productgridview> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (builder) =>
-                                                      ProductUpdate(productList[index]),
+                                                      ProductUpdate(
+                                                        productList[index],
+                                                      ),
                                                 ),
                                               );
                                             },

@@ -1,3 +1,4 @@
+import 'package:app1/RestAPI/RestClient.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/style/style.dart';
 
@@ -20,7 +21,7 @@ class _Productupdate extends State<ProductUpdate> {
     "UnitPrice": "",
   };
 
-  //
+  // initState to set initial value
   @override
   void initState() {
     setState(() {
@@ -57,7 +58,7 @@ class _Productupdate extends State<ProductUpdate> {
       errorToast('Unit Price Price is required');
     } else {
       setState(() => loading = true);
-      //await productCreateRequest(formValues);
+      await productUpdateRequest(formValues, widget.productItem['_id']);
       setState(() => loading = false);
     }
   }
@@ -121,7 +122,7 @@ class _Productupdate extends State<ProductUpdate> {
                             DropdownButton<String>(
                               value: formValues['Quantity'],
                               hint: Text("Select Quantity"),
-                              items: [
+                              items: const [
                                 DropdownMenuItem(
                                   value: '1 Piece',
                                   child: Text('1 Piece'),

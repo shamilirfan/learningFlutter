@@ -61,11 +61,12 @@ Future<bool> productDeleteRequest(dynamic id) async {
 }
 
 // Update Method
-Future<bool> productUpdateRequest(dynamic id) async {
+Future<bool> productUpdateRequest(dynamic formValues, id) async {
   var url = "https://crud.teamrabbil.com/api/v1/UpdateProduct/$id";
   var uri = Uri.parse(url);
-  var deleteHeader = {"Content-Type": "application/json"};
-  var response = await http.get(uri, headers: deleteHeader);
+  var updateBody = jsonEncode(formValues);
+  var updateHeader = {'Content-Type': 'application/json'};
+  var response = await http.post(uri, headers: updateHeader, body: updateBody);
   var resultCode = response.statusCode;
   var resultBody = jsonDecode(response.body);
 
