@@ -1,4 +1,5 @@
 import 'package:app1/RestAPI/RestClient.dart';
+import 'package:app1/Screeen/ProductGridView.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/style/style.dart';
 
@@ -59,7 +60,11 @@ class _Productupdate extends State<ProductUpdate> {
     } else {
       setState(() => loading = true);
       await productUpdateRequest(formValues, widget.productItem['_id']);
-      setState(() => loading = false);
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (builder) => Productgridview()),
+        (Route route) => false,
+      );
     }
   }
 
