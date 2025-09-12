@@ -1,6 +1,6 @@
-import 'package:app1/RestAPI/RestClient.dart';
+import '../RestAPI/RestClient.dart';
 import 'package:flutter/material.dart';
-import 'package:app1/style/style.dart';
+import '../Style/Style.dart';
 
 class ProductCreate extends StatefulWidget {
   @override

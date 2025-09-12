@@ -1,7 +1,7 @@
-import 'package:app1/RestAPI/RestClient.dart';
-import 'package:app1/Screeen/ProductGridView.dart';
+import '../RestAPI/RestClient.dart';
+import 'ProductGridView.dart';
 import 'package:flutter/material.dart';
-import 'package:app1/style/style.dart';
+import '../Style/Style.dart';
 
 class ProductUpdate extends StatefulWidget {
   final Map productItem;

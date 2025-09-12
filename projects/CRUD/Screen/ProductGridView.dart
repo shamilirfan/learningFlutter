@@ -1,6 +1,6 @@
-import 'package:app1/RestAPI/RestClient.dart';
-import 'package:app1/Screeen/ProductCreate.dart';
-import 'package:app1/style/style.dart';
+import '../RestAPI/RestClient.dart';
+import 'ProductCreate.dart';
+import '../Style/Style.dart';
 import 'package:flutter/material.dart';
 import 'ProductUpdate.dart';
 

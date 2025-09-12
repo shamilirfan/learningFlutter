@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:app1/style/style.dart';
 import 'package:http/http.dart' as http;
+import '../Style/Style.dart';
 
 // Get Method
 Future<List> productGetRequest() async {
