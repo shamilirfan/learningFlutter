@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:app1/Screen/RegistrationScreen.dart';
 import 'package:app1/Screen/emailVerificationScreen.dart';
 import 'package:app1/Screen/loginScreen.dart';
 import 'package:app1/Screen/pinVerificationScreen.dart';
 import 'package:app1/Screen/setPasswordScreen.dart';
 import 'package:app1/Screen/splashScreen.dart';
-import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
