@@ -14,7 +14,7 @@ class _Loginscreen extends State<Loginscreen> {
     return Scaffold(
       body: Stack(
         children: [
-          loginScreen(context),
+          backgroundImage(context),
           Padding(
             padding: EdgeInsets.all(30),
             child: Column(
@@ -38,7 +38,7 @@ class _Loginscreen extends State<Loginscreen> {
                 ElevatedButton(
                   onPressed: () {},
                   style: buttonStyle(),
-                  child: buttonChild(Icons.login),
+                  child: buttonChild("Login"),
                 ),
               ],
             ),

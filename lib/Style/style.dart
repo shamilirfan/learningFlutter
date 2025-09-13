@@ -21,7 +21,7 @@ Widget splashScreen(BuildContext context) {
   );
 }
 
-Widget loginScreen(BuildContext context) {
+Widget backgroundImage(BuildContext context) {
   return Image.asset(
     'assets/images/background-image.png',
     alignment: Alignment.center,
@@ -68,7 +68,10 @@ Ink buttonChild(dynamic btnTxt) {
       width: double.infinity,
       height: 45,
       alignment: Alignment.center,
-      child: Icon(btnTxt, color: white, fontWeight: FontWeight.bold),
+      child: Text(
+        btnTxt,
+        style: TextStyle(color: white, fontWeight: FontWeight.bold),
+      ),
     ),
   );
 }
