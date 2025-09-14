@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 const red = Colors.red;
 const dark = Color.fromRGBO(136, 28, 32, 1);
@@ -73,5 +74,21 @@ Ink buttonChild(dynamic btnTxt) {
         style: TextStyle(color: white, fontWeight: FontWeight.bold),
       ),
     ),
+  );
+}
+
+PinTheme pinInput() {
+  return PinTheme(
+    inactiveColor: white,
+    inactiveFillColor: white,
+    selectedColor: const Color.fromARGB(255, 159, 185, 159),
+    activeColor: white,
+    selectedFillColor: const Color.fromARGB(255, 159, 185, 159),
+    shape: PinCodeFieldShape.box,
+    borderRadius: BorderRadius.circular(5),
+    fieldHeight: 50,
+    borderWidth: 0.5,
+    fieldWidth: 65,
+    activeFillColor: white,
   );
 }
