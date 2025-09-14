@@ -77,7 +77,7 @@ Ink buttonChild(dynamic btnTxt) {
   );
 }
 
-PinTheme pinInput() {
+PinTheme pinInput(BuildContext context) {
   return PinTheme(
     inactiveColor: white,
     inactiveFillColor: white,
@@ -88,7 +88,7 @@ PinTheme pinInput() {
     borderRadius: BorderRadius.circular(5),
     fieldHeight: 50,
     borderWidth: 0.5,
-    fieldWidth: 65,
+    fieldWidth: 45,
     activeFillColor: white,
   );
 }

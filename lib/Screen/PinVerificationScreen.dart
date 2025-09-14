@@ -33,7 +33,7 @@ class _Pinverificationscreen extends State<Pinverificationscreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   appContext: context,
                   length: 6,
-                  pinTheme: pinInput(),
+                  pinTheme: pinInput(context),
                   animationType: AnimationType.fade,
                   animationDuration: Duration(microseconds: 300),
                   enableActiveFill: true,
