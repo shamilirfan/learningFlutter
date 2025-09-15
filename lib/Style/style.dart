@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 const red = Colors.red;
 const dark = Color.fromRGBO(136, 28, 32, 1);
@@ -90,5 +91,31 @@ PinTheme pinInput(BuildContext context) {
     borderWidth: 0.5,
     fieldWidth: 45,
     activeFillColor: white,
+  );
+}
+
+// Error Toast
+void errorToast(String msg) {
+  Fluttertoast.showToast(
+    msg: msg,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 2,
+    backgroundColor: red,
+    textColor: white,
+    fontSize: 16.0,
+  );
+}
+
+// Success Toast
+void successToast(String msg) {
+  Fluttertoast.showToast(
+    msg: msg,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 2,
+    backgroundColor: green,
+    textColor: white,
+    fontSize: 16.0,
   );
 }
