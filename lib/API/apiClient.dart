@@ -1,9 +1,10 @@
 import 'dart:convert';
-import '../Style/style.dart';
+import 'package:app1/Style/style.dart';
 import 'package:http/http.dart' as http;
 
+// API Configuration
 var baseURL = "https://task.teamrabbil.com/api/v1";
-var requestHeader = {"Content-Type": "app/json"};
+var requestHeader = {"Content-Type": "application/json"};
 
 // Login Request
 Future<bool> loginRequest(dynamic formValues) async {
@@ -17,7 +18,7 @@ Future<bool> loginRequest(dynamic formValues) async {
     successToast("Login Request Success");
     return true;
   } else {
-    errorToast("Login Reques Fail!");
+    errorToast("Login Request Fail!");
     return false;
   }
 }

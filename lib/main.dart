@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.green, useMaterial3: false),
       title: 'Task Manager',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/pinVerification',
+      initialRoute: '/login',
       routes: {
         '/': (context) => Splashscreen(),
         '/login': (context) => Loginscreen(),
