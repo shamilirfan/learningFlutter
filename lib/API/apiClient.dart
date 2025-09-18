@@ -8,7 +8,7 @@ var requestHeader = {"Content-Type": "application/json"};
 
 // Login Request
 Future<bool> loginRequest(dynamic formValues) async {
-  var url = Uri.parse("$baseURL/login");
+  var url = Uri.parse('$baseURL/login');
   var postBody = json.encode(formValues);
   var response = await http.post(url, headers: requestHeader, body: postBody);
   var resultCode = response.statusCode;
