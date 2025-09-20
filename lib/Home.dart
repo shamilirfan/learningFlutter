@@ -11,7 +11,30 @@ class Home extends StatelessWidget {
       appBar: AppBar(title: Text('Getx')),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => getxDialog('Confirm','Cancel'),
+          onPressed: () {
+            Get.bottomSheet(
+              Container(
+                height: 200,
+                color: green,
+                child: Column(
+                  children: [
+                    Text('data - 1', style: TextStyle(color: white)),
+                    Text('data - 2', style: TextStyle(color: white)),
+                    Text('data - 3', style: TextStyle(color: white)),
+                    Text('data - 4', style: TextStyle(color: white)),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () => Get.back(closeOverlays: true),
+                      child: Text('Cancel'),
+                    ),
+                  ],
+                ),
+              ),
+              enableDrag: true,
+              isDismissible: false,
+              barrierColor: Colors.yellow,
+            );
+          },
           child: Text('Click'),
         ),
       ),
