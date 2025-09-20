@@ -14,8 +14,8 @@ class Home extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             Get.to(About());
-            // Get.off(About());
-            // Get.offAll(About());
+            // Get.off(About()); // clear one history
+            // Get.offAll(About()); // clear all history
           },
           child: Text('Click'),
         ),
