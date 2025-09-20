@@ -13,9 +13,7 @@ class Home extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Get.to(About());
-            // Get.off(About()); // clear one history
-            // Get.offAll(About()); // clear all history
+            Get.offNamed('/About');
           },
           child: Text('Click'),
         ),

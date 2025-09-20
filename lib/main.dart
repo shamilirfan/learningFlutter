@@ -1,3 +1,4 @@
+import 'package:app1/About.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Home.dart';
@@ -15,7 +16,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.green, useMaterial3: false),
       title: 'Getx',
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => Home(),
+          transition: Transition.leftToRight,
+        ),
+        GetPage(
+          name: '/About',
+          page: () => About(),
+          transition: Transition.rightToLeft,
+        ),
+      ],
     );
   }
 }
