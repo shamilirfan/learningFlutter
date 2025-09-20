@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 const red = Colors.red;
 const dark = Color.fromRGBO(136, 28, 32, 1);
@@ -13,109 +12,21 @@ const lightGray = Color.fromRGBO(135, 142, 150, 1.0);
 const light = Color.fromRGBO(211, 211, 211, 1.0);
 const transparent = Colors.transparent;
 
-Widget splashScreen(BuildContext context) {
-  return Image.asset(
-    'assets/images/splash-image.png',
-    alignment: Alignment.center,
-    width: MediaQuery.of(context).size.width,
-    height: MediaQuery.of(context).size.height,
-    fit: BoxFit.cover,
-  );
-}
-
-Widget backgroundImage(BuildContext context) {
-  return Image.asset(
-    'assets/images/background-image.png',
-    alignment: Alignment.center,
-    width: MediaQuery.of(context).size.width,
-    height: MediaQuery.of(context).size.height,
-    fit: BoxFit.cover,
-  );
-}
-
-TextStyle headLineText() {
-  return TextStyle(fontSize: 28, fontWeight: FontWeight.w700, color: darkBlue);
-}
-
-TextStyle subLineText() {
-  return TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: lightGray);
-}
-
-InputDecoration inputDecoration(String labelTxt) {
-  return InputDecoration(
-    labelText: labelTxt,
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: green, width: 1.5),
-    ),
-    border: OutlineInputBorder(),
-  );
-}
-
-ButtonStyle buttonStyle() {
-  return ElevatedButton.styleFrom(
-    elevation: 2,
-    foregroundColor: white,
-    backgroundColor: transparent,
-    padding: EdgeInsets.all(0),
-  );
-}
-
-Ink buttonChild(dynamic btnTxt) {
-  return Ink(
-    decoration: BoxDecoration(
-      color: green,
-      borderRadius: BorderRadius.circular(4),
-    ),
-    child: Container(
-      width: double.infinity,
-      height: 45,
-      alignment: Alignment.center,
-      child: Text(
-        btnTxt,
-        style: TextStyle(color: white, fontWeight: FontWeight.bold),
-      ),
-    ),
-  );
-}
-
-PinTheme pinInput(BuildContext context) {
-  return PinTheme(
-    inactiveColor: white,
-    inactiveFillColor: white,
-    selectedColor: const Color.fromARGB(255, 159, 185, 159),
-    activeColor: white,
-    selectedFillColor: const Color.fromARGB(255, 159, 185, 159),
-    shape: PinCodeFieldShape.box,
-    borderRadius: BorderRadius.circular(5),
-    fieldHeight: 50,
-    borderWidth: 0.5,
-    fieldWidth: 45,
-    activeFillColor: white,
-  );
-}
-
-// Error Toast
-void errorToast(String msg) {
-  Fluttertoast.showToast(
-    msg: msg,
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 2,
-    backgroundColor: red,
-    textColor: white,
-    fontSize: 16.0,
-  );
-}
-
-// Success Toast
-void successToast(String msg) {
-  Fluttertoast.showToast(
-    msg: msg,
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 2,
+// Getx SnackBar
+void getxSnackbar() {
+  Get.snackbar(
+    'Title',
+    'Message',
+    snackPosition: SnackPosition.BOTTOM,
+    showProgressIndicator: true,
     backgroundColor: green,
-    textColor: white,
-    fontSize: 16.0,
+    colorText: white,
+    borderRadius: 2,
+    margin: EdgeInsets.all(10),
+    padding: EdgeInsets.all(10),
+    icon: Icon(Icons.addchart_outlined, color: white),
+    isDismissible: true,
+    duration: Duration(seconds: 5),
+    animationDuration: Duration(milliseconds: 900),
   );
 }

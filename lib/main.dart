@@ -1,10 +1,6 @@
-import 'package:app1/Screen/SplashScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:app1/Screen/RegistrationScreen.dart';
-import 'package:app1/Screen/emailVerificationScreen.dart';
-import 'package:app1/Screen/loginScreen.dart';
-import 'package:app1/Screen/pinVerificationScreen.dart';
-import 'package:app1/Screen/setPasswordScreen.dart';
+import 'package:get/get.dart';
+import 'Home.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,19 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(primarySwatch: Colors.green, useMaterial3: false),
-      title: 'Task Manager',
+      title: 'Getx',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
-      routes: {
-        '/': (context) => Splashscreen(),
-        '/login': (context) => Loginscreen(),
-        '/registration': (context) => Registrationscreen(),
-        '/emailVerification': (context) => Emailverificationscreen(),
-        '/pinVerification': (context) => Pinverificationscreen(),
-        '/setPassword': (context) => Setpasswordscreen(),
-      },
+      home: Home(),
     );
   }
 }
