@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(title: Text('Getx')),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => getxSnackbar(),
+          onPressed: () => getxDialog('Confirm','Cancel'),
           child: Text('Click'),
         ),
       ),

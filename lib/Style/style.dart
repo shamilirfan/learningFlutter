@@ -30,3 +30,32 @@ void getxSnackbar() {
     animationDuration: Duration(milliseconds: 900),
   );
 }
+
+// Getx Dialog
+void getxDialog(String txtConfirm, String txtCancel) {
+  Get.defaultDialog(
+    title: 'Delete',
+    titlePadding: EdgeInsets.all(15),
+    titleStyle: TextStyle(color: white),
+    middleText: 'Do you want to delete.?',
+    middleTextStyle: TextStyle(color: white),
+    backgroundColor: blue,
+    radius: 4,
+    textCancel: txtCancel,
+    cancelTextColor: white,
+    textConfirm: txtConfirm,
+    confirmTextColor: blue,
+    buttonColor: white,
+    onCancel: () => {Get.back(closeOverlays: true)},
+    onConfirm: () => {Get.back(closeOverlays: true)},
+    barrierDismissible: false,
+    content: Column(
+      children: [
+        Text('data - 1'),
+        Text('data - 2'),
+        Text('data - 3'),
+        Text('data - 4'),
+      ],
+    ),
+  );
+}
